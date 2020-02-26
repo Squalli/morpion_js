@@ -1,15 +1,18 @@
 *{
 	box-sizing: border-box;
 }
-
-#grille{
-	
-	
-	display: flex;
-	flex-wrap: wrap;
-	margin: auto;
+#container {
+    
+    display: flex;
+    justify-content: space-evenly;
 }
 
+#grille{
+    
+	display: flex;
+	flex-wrap: wrap;
+
+}
 .case{
 	
 	width: 6rem;/*16px * 6 = 96px*/
@@ -21,6 +24,6 @@
 	
 }
 
-.joueur1{
-    background-color: yellow;
+.joueur, #msg{
+    text-align: center;
 }

@@ -5,6 +5,20 @@ class Joueur{
         
         this.symbol = symbol
         this.className = className
+        this.score = 0
+    }
+    
+    winner(){
+        this.score++
+    }
+    
+    render(){
+        let html = "<h2> JOUEUR "+this.symbol+"</h2>"
+        let scoring = this.score > 1 ? this.score+" points" : this.score+" point"
+        
+        html+= "<h3>"+scoring+"</h3>"
+        
+        return html
     }
 }
 
@@ -33,6 +47,11 @@ class Morpion{
             }
             
         }
+    }
+    
+    getJoueurs(){
+        
+        return [this.joueur1, this.joueur2]
     }
     
     renderDiv(){
@@ -75,6 +94,8 @@ class Morpion{
     
     hasWinner(){
     
+        let returnValue
+    
         let diag1 = ""
         let diag2 = ""
         
@@ -91,25 +112,28 @@ class Morpion{
             }
             
             if(ligne == pattern || colonne == pattern){
-                return true;
+                returnValue = true;
             }
         }
         
         if(diag1 == pattern || diag2 == pattern){
-
-            return true;
+            returnValue = true;
         }
         
-        return false;
+        if(returnValue == true){
+            this.joueurActuel.score++
+            return true
+        }
+        return false
     }
     
     isDraw(){
-        let draw = true
-        
-        if(this.grid.indexOf("")){
-            draw =  false
+       
+        for(let key in this.grid) {
+            if(this.grid[key] == "") 
+                return false
         }
-        return draw
+        return true
     }
 }
            

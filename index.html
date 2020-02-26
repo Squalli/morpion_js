@@ -6,7 +6,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body> 
-        <section id="morpion"></section>
+        <div id="container">
+            <section class="joueur" id="joueur1"></section>
+            <section id="morpion"></section>
+            <section class="joueur" id="joueur2"></section>
+        </div>
         <p id="msg"></p>
         <button id="restart">Restart</button>
         <script
@@ -42,6 +46,9 @@
             $(document).ready(function(){
                 $("#msg").html("BIENVENUE : C'est à "+morpion.joueurActuel.symbol+" de jouer !");
                 
+                $("#joueur1").html(morpion.joueur1.render())
+                $("#joueur2").html(morpion.joueur2.render())
+                
                 $("#morpion").html(morpion.renderDiv())
                 $("#restart").hide()
                 $(".case").on("click", clickHandler)
@@ -50,9 +57,12 @@
             
             $("#restart").on("click", function(){
                 morpion.init()
+                $("#joueur1").html(morpion.joueur1.render())
+                $("#joueur2").html(morpion.joueur2.render())
                 $("#morpion").html(morpion.renderDiv())
                 $(".case").on("click", clickHandler)
                 $("#msg").html("Maintenant, c'est à "+morpion.joueurActuel.symbol+" de jouer, prends ta revanche !")
+                $(this).hide()
             })
         
         </script>
